@@ -9,7 +9,7 @@ const cors = require("cors");
 app.use(
   cors({
     origin: ["https://chandana-motors-inventory-frontend.vercel.app"],
-    methods: ["POST", "GET"],
+    methods: ["POST", "GET", "DELETE", "PATCH"],
     credentials: "true",
   })
 );
