@@ -6,7 +6,7 @@ export default {
     colors: {
       primaryDark: "#252B3B",
       primaryYellow: "#EBAD00",
-      borderLight: "#252B3B",
+      borderLight: "#CFCFCF",
     },
   },
   plugins: [],
