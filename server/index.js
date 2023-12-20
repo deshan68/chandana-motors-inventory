@@ -8,7 +8,7 @@ const app = express();
 const cors = require("cors");
 app.use(
   cors({
-    origin: ["https://chandana-motors-inventory-frontend.vercel.app/"],
+    origin: ["https://chandana-motors-inventory-frontend.vercel.app"],
     methods: ["POST", "GET"],
     credentials: "true",
   })
