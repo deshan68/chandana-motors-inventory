@@ -18,7 +18,7 @@ app.use(
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.send("Hello, Express!");
+  res.json("Hello, Express!");
 });
 
 // routes
@@ -26,11 +26,13 @@ app.use("/api/items", itemRoutes);
 
 // connect to db
 mongoose
-  .connect(process.env.MONGO_URI)
+  .connect(
+    "mongodb+srv://arundeshan:XPURjjIX2QH2hUVU@cluster0.v0fmtte.mongodb.net/?retryWrites=true&w=majority"
+  )
   .then(() => {
     // listen for requests
-    app.listen(process.env.PORT, () => {
-      console.log("connected to db & listening on port", process.env.PORT);
+    app.listen(3000, () => {
+      console.log("connected to db & listening on port", 3000);
     });
   })
   .catch((error) => {
