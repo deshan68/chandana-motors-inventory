@@ -11,9 +11,9 @@ app.use(cors());
 // middleware
 app.use(express.json());
 
-// app.get("/", (req, res) => {
-//   res.send("Hello, Express!");
-// });
+app.get("/", (req, res) => {
+  res.send("Hello, Express!");
+});
 
 // routes
 app.use("/api/items", itemRoutes);
