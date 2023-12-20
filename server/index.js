@@ -1,11 +1,32 @@
+require("dotenv").config();
+
 const express = require("express");
+const mongoose = require("mongoose");
+const itemRoutes = require("./routes/item");
+
 const app = express();
-const port = 3000; // You can choose any available port
+const cors = require("cors");
+app.use(cors());
 
-app.get("/", (req, res) => {
-  res.send("Hello, Express!");
-});
+// middleware
+app.use(express.json());
 
-app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
-});
+// app.get("/", (req, res) => {
+//   res.send("Hello, Express!");
+// });
+
+// routes
+app.use("/api/items", itemRoutes);
+
+// connect to db
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => {
+    // listen for requests
+    app.listen(process.env.PORT, () => {
+      console.log("connected to db & listening on port", process.env.PORT);
+    });
+  })
+  .catch((error) => {
+    console.log(error);
+  });

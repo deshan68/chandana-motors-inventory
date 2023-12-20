@@ -1,7 +1,46 @@
-import React from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 
+const dummy = [
+  { code: "ASD", name: "qwwe" },
+  { code: "IIJ", name: "gge" },
+];
+
 const Content = () => {
+  const [items, setItems] = useState([]);
+  const [searchField, setSearchField] = useState([]);
+
+  const handleChange = (e) => {
+    setSearchField(e.target.value);
+    console.log(e.target.value);
+    const filteredItems = items?.filter((item) => {
+      return (
+        item.name.toLowerCase().includes(e.target.value.toLowerCase()) ||
+        item.code.toLowerCase().includes(e.target.value.toLowerCase())
+      );
+    });
+    setSearchField(filteredItems);
+    console.log(filteredItems);
+  };
+
+  const fetchItems = async () => {
+    const response = await fetch("http://localhost:3000/api/items");
+    const json = await response.json();
+    setItems(json);
+    setSearchField(json);
+  };
+  useEffect(() => {
+    fetchItems();
+  }, []);
+
+  const handleDelete = async (id) => {
+    const response = await fetch("http://localhost:3000/api/items/" + id, {
+      method: "DELETE",
+    });
+    const json = await response.json();
+    fetchItems();
+  };
+
   return (
     <main className="w-full px-4 py-6 ">
       {/* top div */}
@@ -9,10 +48,11 @@ const Content = () => {
         <input
           type="text"
           placeholder="Search"
+          onChange={handleChange}
           className="border-[0.5px] border-borderLight p-2 outline-none w-[360px] h-[40px] text-sm"
         />
         <Link to={"/add"}>
-          <button className="text-lg font-semibold bg-primaryYellow px-6 py-3">
+          <button className="text-base font-semibold bg-primaryYellow px-6 py-3">
             Add New Item
           </button>
         </Link>
@@ -41,31 +81,40 @@ const Content = () => {
             </tr>
           </thead>
           <tbody>
-            <tr class="border-b border-b-borderLight">
-              <th
-                scope="row"
-                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
-              >
-                CD1253
-              </th>
-              <td class="px-6 py-4">Honda Cable</td>
-              <td class="px-6 py-4">12</td>
-              <td class="px-6 py-4">Rs: 1200.00</td>
-              <td class="px-6 py-4 flex gap-x-6">
-                <Link
-                  to={"/edit"}
-                  class="font-medium text-[#0477FF]  hover:underline"
+            {searchField?.map((item) => (
+              <tr key={item._id} class="border-b border-b-borderLight">
+                <th
+                  scope="row"
+                  class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
                 >
-                  Edit
-                </Link>
-                <span
-                  href="#"
-                  class="font-medium text-[#FF0000] hover:underline"
-                >
-                  Delete
-                </span>
-              </td>
-            </tr>
+                  {item.code}
+                </th>
+                <td class="px-6 py-4">{item.name}</td>
+                <td class="px-6 py-4">{item.stock}</td>
+                <td class="px-6 py-4">Rs: {item.price}.00</td>
+                <td class="px-6 py-4 flex gap-x-6">
+                  <Link
+                    to={`/edit/${item._id}`}
+                    state={{
+                      id: item._id,
+                      name: item.name,
+                      code: item.code,
+                      stock: item.stock,
+                      price: item.price,
+                    }}
+                    class="font-medium text-[#0477FF]  hover:underline"
+                  >
+                    Edit
+                  </Link>
+                  <button
+                    onClick={() => handleDelete(item._id)}
+                    class="font-medium text-[#FF0000] hover:underline"
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
