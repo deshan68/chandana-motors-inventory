@@ -1,11 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 
-const dummy = [
-  { code: "ASD", name: "qwwe" },
-  { code: "IIJ", name: "gge" },
-];
-
 const Content = () => {
   const [items, setItems] = useState([]);
   const [searchField, setSearchField] = useState([]);
@@ -22,6 +17,8 @@ const Content = () => {
     setSearchField(filteredItems);
     console.log(filteredItems);
   };
+
+  // https://chandana-motors-inventory-backend.vercel.app/
 
   const fetchItems = async () => {
     const response = await fetch(
