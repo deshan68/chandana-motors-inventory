@@ -24,7 +24,9 @@ const Content = () => {
   };
 
   const fetchItems = async () => {
-    const response = await fetch("http://localhost:3000/api/items");
+    const response = await fetch(
+      "https://chandana-motors-inventory-frontend.vercel.app/api/items"
+    );
     const json = await response.json();
     setItems(json);
     setSearchField(json);
