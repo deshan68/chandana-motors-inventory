@@ -17,13 +17,16 @@ const AddItem = () => {
 
     const item = { name, code, stock, price };
 
-    const response = await fetch("http://localhost:3000/api/items/", {
-      method: "POST",
-      body: JSON.stringify(item),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(
+      "https://chandana-motors-inventory-backend.vercel.app/api/items/",
+      {
+        method: "POST",
+        body: JSON.stringify(item),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     const json = await response.json();
 
     if (!response.ok) {

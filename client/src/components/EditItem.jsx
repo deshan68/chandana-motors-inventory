@@ -23,7 +23,7 @@ const EditItem = () => {
     const item = { name, code, stock, price };
 
     const response = await fetch(
-      `http://localhost:3000/api/items/${productId}`,
+      `https://chandana-motors-inventory-backend.vercel.app/api/items/${productId}`,
       {
         method: "PATCH",
         body: JSON.stringify(item),
