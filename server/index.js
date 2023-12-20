@@ -22,7 +22,7 @@ app.get("/", (req, res) => {
 });
 
 // routes
-// app.use("/api/items", itemRoutes);
+app.use("/api/items", itemRoutes);
 
 // connect to db
 mongoose
