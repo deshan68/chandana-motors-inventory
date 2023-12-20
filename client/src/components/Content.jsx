@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Content = () => {
   return (
@@ -10,13 +11,14 @@ const Content = () => {
           placeholder="Search"
           className="border-[0.5px] border-borderLight p-2 outline-none w-[360px] h-[40px] text-sm"
         />
-        <button className="text-lg font-semibold bg-primaryYellow px-6 py-3">
-          Add New Item
-        </button>
+        <Link to={"/add"}>
+          <button className="text-lg font-semibold bg-primaryYellow px-6 py-3">
+            Add New Item
+          </button>
+        </Link>
       </div>
 
       {/* table */}
-
       <div class="relative overflow-x-auto">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
           <thead class="text-xs text-[#252b3bc9] uppercase bg-[#D9D9D9]">
@@ -50,31 +52,18 @@ const Content = () => {
               <td class="px-6 py-4">12</td>
               <td class="px-6 py-4">Rs: 1200.00</td>
               <td class="px-6 py-4 flex gap-x-6">
-                <a href="#" class="font-medium text-[#0477FF]  hover:underline">
+                <Link
+                  to={"/edit"}
+                  class="font-medium text-[#0477FF]  hover:underline"
+                >
                   Edit
-                </a>
-                <a href="#" class="font-medium text-[#FF0000] hover:underline">
+                </Link>
+                <span
+                  href="#"
+                  class="font-medium text-[#FF0000] hover:underline"
+                >
                   Delete
-                </a>
-              </td>
-            </tr>
-            <tr class="border-b border-b-borderLight">
-              <th
-                scope="row"
-                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
-              >
-                CD1254
-              </th>
-              <td class="px-6 py-4">Bajaj Key</td>
-              <td class="px-6 py-4">2</td>
-              <td class="px-6 py-4">Rs: 1200.00</td>
-              <td class="px-6 py-4 flex gap-x-6">
-                <a href="#" class="font-medium text-[#0477FF]  hover:underline">
-                  Edit
-                </a>
-                <a href="#" class="font-medium text-[#FF0000] hover:underline">
-                  Delete
-                </a>
+                </span>
               </td>
             </tr>
           </tbody>

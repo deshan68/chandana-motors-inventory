@@ -1,12 +1,18 @@
 import { useState } from "react";
 import "./App.css";
-import { Content, Navbar } from "./components";
+import { Content, EditItem, Navbar } from "./components";
+import { Route, Routes } from "react-router-dom";
+import { AddItem } from "./components";
 
 function App() {
   return (
     <>
       <Navbar />
-      <Content />
+      <Routes>
+        <Route path="/" element={<Content />} />
+        <Route path="/add" element={<AddItem />} />
+        <Route path="/edit" element={<EditItem />} />
+      </Routes>
     </>
   );
 }
