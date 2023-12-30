@@ -43,7 +43,7 @@ const AddItem = () => {
   };
   return (
     <form class="max-w-sm mx-auto mt-20 h-full">
-      <div class="mb-5">
+      <div class="mb-5 mx-3">
         <input
           value={name}
           onChange={(e) => setName(e.target.value)}
@@ -52,7 +52,7 @@ const AddItem = () => {
           className=" border border-borderLight text-[#252b3bc9] text-sm block w-full p-2.5"
         />
       </div>
-      <div class="mb-5">
+      <div class="mb-5 mx-3">
         <input
           value={code}
           onChange={(e) => setCode(e.target.value)}
@@ -61,7 +61,7 @@ const AddItem = () => {
           className=" border border-borderLight text-[#252b3bc9] text-sm block w-full p-2.5"
         />
       </div>
-      <div class="mb-5">
+      <div class="mb-5 mx-3">
         <input
           value={stock}
           onChange={(e) => setStock(e.target.value)}
@@ -70,7 +70,7 @@ const AddItem = () => {
           className=" border border-borderLight text-[#252b3bc9] text-sm block w-full p-2.5"
         />
       </div>
-      <div class="mb-5">
+      <div class="mb-5 mx-3">
         <input
           value={price}
           onChange={(e) => setPrice(e.target.value)}
@@ -80,7 +80,7 @@ const AddItem = () => {
         />
       </div>
 
-      <div className="flex justify-between">
+      <div className="flex justify-between mx-3">
         <button
           onClick={handleSubmit}
           type="submit"

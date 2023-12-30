@@ -51,10 +51,10 @@ const Content = () => {
           type="text"
           placeholder="Search"
           onChange={handleChange}
-          className="border-[0.5px] border-borderLight p-2 outline-none w-[360px] h-[40px] text-sm"
+          className="border-[0.5px] border-borderLight p-2 outline-none md:w-[360px] w-56 h-8 md:h-[40px] md:text-sm text-[10px]"
         />
         <Link to={"/add"}>
-          <button className="text-base font-semibold bg-primaryYellow px-6 py-3">
+          <button className="md:text-base text-[11px] md:font-semibold font-normal bg-primaryYellow md:px-6 md:py-3 px-1 py-1">
             Add New Item
           </button>
         </Link>
