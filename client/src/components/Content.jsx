@@ -1,9 +1,28 @@
 import React, { useEffect, useMemo, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { setIsAuthenticated } from "../slices/authSlice";
 
 const Content = () => {
   const [items, setItems] = useState([]);
   const [searchField, setSearchField] = useState([]);
+
+  const dispatch = useDispatch();
+  const users = useSelector((state) => state.auth.isAuthenticated);
+
+  const authHandler = () => {
+    dispatch(
+      setIsAuthenticated({
+        userName: "arun68",
+        password: "arun1998",
+      })
+    );
+  };
+
+  useEffect(() => {
+    // authHandler();
+    console.log(users);
+  }, []);
 
   const handleChange = (e) => {
     setSearchField(e.target.value);
@@ -45,6 +64,7 @@ const Content = () => {
 
   return (
     <main className="w-full px-4 py-6 ">
+      <button onClick={authHandler}>test</button>
       {/* top div */}
       <div className="w-full flex justify-between mb-6">
         <input
